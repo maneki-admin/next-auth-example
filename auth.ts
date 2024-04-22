@@ -28,8 +28,8 @@ export const config = {
   callbacks: {
     async authorized({ request, auth }) {
       if(auth) {
-      const verifier = "kien-google"; 
-      const verifierId = auth.user?.email as string;
+        const verifier = "kien-google"; 
+        const verifierId = auth.user?.email as string;
         const verifierDetails = { verifier: verifier, verifierId: verifierId };
         const { torusNodeEndpoints, torusIndexes, torusNodePub} = await nodeManager.getNodeDetails(verifierDetails);
         const address = await torus.getPublicAddress(torusNodeEndpoints, torusNodePub, verifierDetails);
@@ -39,12 +39,12 @@ export const config = {
         console.log("tkey----", tKey)
         const [{ subkey }] = await Promise.all([import("@toruslabs/openlogin-subkey")]);
 
-    const scopedKey = subkey(tKey, Buffer.from(clientId, "base64"));
-    const privKey = tKey.padStart(64, "0");
-    // const publicAddress = `0x${Buffer.from(
-    //   pubToAddress(privateToPublic(getBufferFromHexKey(privKey)))
-    // ).toString("hex")}`;
-    // console.log(publicAddress, "public address");
+        const scopedKey = subkey(tKey, Buffer.from(clientId, "base64"));
+        const privKey = tKey.padStart(64, "0");
+        // const publicAddress = `0x${Buffer.from(
+        //   pubToAddress(privateToPublic(getBufferFromHexKey(privKey)))
+        // ).toString("hex")}`;
+        // console.log(publicAddress, "public address");
       }
       
       return true
